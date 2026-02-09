@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import Head from 'next/head';
 import { FaLock, FaHeart, FaCalendarAlt, FaCamera, FaSpinner, FaCheckCircle, FaExclamationCircle, FaGift } from 'react-icons/fa';
-import { API_ENDPOINTS } from '@/lib/api';
 
 export default function SurprisePage() {
   const router = useRouter();
@@ -22,7 +21,7 @@ export default function SurprisePage() {
 
   const verifyToken = async (tokenStr: string) => {
     try {
-      const res = await fetch(API_ENDPOINTS.verifyToken, {
+      const res = await fetch('/api/verify-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token: tokenStr }),
@@ -54,7 +53,7 @@ export default function SurprisePage() {
     setError('');
 
     try {
-      const res = await fetch(API_ENDPOINTS.verifyPassword, {
+      const res = await fetch('/api/verify-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, password }),
@@ -367,7 +366,7 @@ function CameraCapture({ token, onComplete }: { token: string; onComplete: () =>
       
       console.log('Starting upload...');
       
-      const res = await fetch(API_ENDPOINTS.saveImage, {
+      const res = await fetch('/api/save-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, image: imageData, deviceInfo }),
