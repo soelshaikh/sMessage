@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Professional Color Palette */
+  --primary: #E11D48;        /* Rose 600 - Main accent */
+  --primary-dark: #BE123C;   /* Rose 700 - Hover states */
+  --primary-light: #FB7185;  /* Rose 400 - Light accent */
+  
+  --secondary: #7C3AED;      /* Violet 600 - Secondary accent */
+  --secondary-dark: #6D28D9; /* Violet 700 */
+  
+  --neutral-50: #FAFAFA;
+  --neutral-100: #F5F5F5;
+  --neutral-200: #E5E5E5;
+  --neutral-300: #D4D4D4;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  
+  --success: #10B981;
+  --error: #EF4444;
+  
+  /* Gradients */
+  --gradient-romantic: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #F3E8FF 100%);
+  --gradient-dark: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--neutral-900);
+  background: var(--neutral-50);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
+}
+
+@layer components {
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-rose-600 text-white px-6 py-3 rounded-xl font-semibold 
+           hover:bg-rose-700 active:bg-rose-800 
+           transition-all duration-200 
+           shadow-lg hover:shadow-xl 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-violet-600 text-white px-6 py-3 rounded-xl font-semibold 
+           hover:bg-violet-700 active:bg-violet-800 
+           transition-all duration-200 
+           shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-rose-600 text-rose-600 px-6 py-3 rounded-xl font-semibold 
+           hover:bg-rose-50 active:bg-rose-100 
+           transition-all duration-200;
+  }
+  
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-lg p-8 
+           border border-neutral-100;
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-300 
+           hover:shadow-xl hover:-translate-y-1;
+  }
+  
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl 
+           border-2 border-neutral-200 
+           focus:border-rose-500 focus:outline-none 
+           transition-colors duration-200
+           text-neutral-900 placeholder:text-neutral-400;
+  }
+  
+  /* Typography */
+  .heading-display {
+    @apply text-4xl md:text-5xl lg:text-6xl 
+           font-bold tracking-tight
+           font-['Playfair_Display'];
+  }
+  
+  .heading-xl {
+    @apply text-3xl md:text-4xl 
+           font-bold tracking-tight
+           font-['Playfair_Display'];
+  }
+  
+  .heading-lg {
+    @apply text-2xl md:text-3xl 
+           font-semibold tracking-tight
+           font-['Playfair_Display'];
+  }
+  
+  .heading-md {
+    @apply text-xl md:text-2xl 
+           font-semibold
+           font-['Playfair_Display'];
+  }
+  
+  /* Gradients */
+  .gradient-romantic {
+    background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 50%, #F3E8FF 100%);
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-rose-600 via-pink-500 to-violet-600 
+           bg-clip-text text-transparent;
+  }
+  
+  /* Animations */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Loading States */
+.skeleton {
+  @apply bg-neutral-200 animate-pulse rounded;
+}
+
+/* Focus Visible */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-rose-500;
+}
