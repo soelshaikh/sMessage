@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FaLock, FaEye, FaSync, FaHome, FaCheckCircle, FaTimesCircle, FaClock, FaImage, FaMobileAlt, FaMapMarkerAlt, FaChartLine } from 'react-icons/fa';
+import { API_ENDPOINTS } from '@/lib/api';
 
 interface SurpriseEvent {
   id: number;
@@ -29,7 +30,7 @@ export default function AdminDashboard() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await fetch(API_ENDPOINTS.adminLogin, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
@@ -52,7 +53,7 @@ export default function AdminDashboard() {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch('/api/admin/events');
+      const res = await fetch(API_ENDPOINTS.adminEvents);
       
       if (res.status === 401) {
         setIsAuthenticated(false);

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { FaGift, FaHeart, FaArrowRight, FaLock } from 'react-icons/fa';
+import { API_ENDPOINTS } from '@/lib/api';
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function Home() {
     setLoading(true);
     try {
       // Generate a new token
-      const res = await fetch('/api/generate-token', {
+      const res = await fetch(API_ENDPOINTS.generateToken, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });
