@@ -373,6 +373,10 @@ export default function AdminDashboard() {
                               alt="Captured moment"
                               className="w-48 h-48 object-cover rounded-2xl shadow-elegant cursor-pointer transition-all group-hover:shadow-elegant-lg group-hover:scale-105"
                               onClick={() => setSelectedImage(event.image_url)}
+                              onError={(e) => {
+                                console.error('Image failed to load:', event.image_url);
+                                (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><rect fill="%23f3f4f6" width="200" height="200"/><text x="50%" y="50%" text-anchor="middle" fill="%239ca3af" font-family="Arial" font-size="14">Image Not Found</text></svg>';
+                              }}
                             />
                             <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 rounded-2xl transition-all flex items-center justify-center">
                               <FaEye className="text-white opacity-0 group-hover:opacity-100 text-2xl transition-opacity" />
@@ -408,6 +412,9 @@ export default function AdminDashboard() {
               src={selectedImage}
               alt="Full size"
               className="max-w-full max-h-screen rounded-2xl shadow-2xl"
+              onError={(e) => {
+                console.error('Modal image failed to load:', selectedImage);
+              }}
             />
             <button
               className="absolute -top-4 -right-4 bg-white text-neutral-900 rounded-full w-12 h-12 flex items-center justify-center hover:bg-neutral-100 transition-colors shadow-lg"
